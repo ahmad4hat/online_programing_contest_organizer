@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  php-httpd:
+    image: php:7.3-apache
+    ports:
+      - 80:80
+    volumes:
+      - "./:/var/www/html"
+      # - type: bind
+      #   source: "/home/ahmad/Desktop/php_task/online_programing_contest_organizer"
+      #   target: "/var/www/html"
+
+  mariadb:
+    image: mariadb:10.5.2
+    volumes:
+      - mariadb-volume:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: ""
+      MYSQL_DATABASE: "testdb"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - "mariadb:db"
+    ports:
+      - 8081:80
+
+volumes:
+  mariadb-volume:
