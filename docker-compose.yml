@@ -11,23 +11,24 @@ services:
       #   source: "/home/ahmad/Desktop/php_task/online_programing_contest_organizer"
       #   target: "/var/www/html"
 
-  mariadb:
-    image: mariadb:10.5.2
-    volumes:
-      - mariadb-volume:/var/lib/mysql
+  mysql-server:
+    image: mysql:8.0.19
+    restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ROOT_PASSWORD: ""
-      MYSQL_USER: "admin"
-      MYSQL_PASSWORD: ""
-      MYSQL_DATABASE: "testdb"
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    links:
-      - "mariadb:db"
+    image: phpmyadmin/phpmyadmin:5.0.1
+    restart: always
+    environment:
+      PMA_HOST: mysql-server
+      PMA_USER: root
+      PMA_PASSWORD: secret
     ports:
-      - 8081:80
-
+      - "8080:80"
 volumes:
-  mariadb-volume:
+  mysql-data:
