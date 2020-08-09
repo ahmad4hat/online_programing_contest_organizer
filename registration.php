@@ -67,6 +67,13 @@ print_r($_POST)
                 <input type="checkbox" name="typeOfUser[judge]" id="judge" value="judge">
 
 
+                <br>
+                <br>
+                <label for="profilePicture">Profile Picture</label>
+                <input type="file" name="profilePicture">
+                <br>
+                <br>
+
                 <input type="submit" name="submit" value="submit">
 
 
