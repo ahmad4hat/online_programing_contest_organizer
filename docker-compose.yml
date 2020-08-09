@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  php-httpd:
+    image: php:7.3-apache
+    ports:
+      - 80:80
+    volumes:
+      - "./:/var/www/html"
+      # - type: bind
+      #   source: "/home/ahmad/Desktop/php_task/online_programing_contest_organizer"
+      #   target: "/var/www/html"
+
+  mysql-server:
+    image: mysql:8.0.19
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0.1
+    restart: always
+    environment:
+      PMA_HOST: mysql-server
+      PMA_USER: root
+      PMA_PASSWORD: secret
+    ports:
+      - "8080:80"
+volumes:
+  mysql-data:
