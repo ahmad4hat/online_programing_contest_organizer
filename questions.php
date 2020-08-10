@@ -10,7 +10,7 @@ $questions = [
         "lastSubmissionDate" => time() + 4800,
         "createdAt" => time(),
         "totalMark" => 10,
-        "difficultyLevel" => "easy",
+        "difficultyLevel" => "Easy",
         "creator" => "caxeeqw" //username of the question maker
 
     ],
@@ -36,8 +36,8 @@ $questions = [
         'expectedOutput' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia, quia. ",
         "lastSubmissionDate" => time() + 4800,
         "createdAt" => time(),
-        "totalMark" => 10,
-        "difficultyLevel" => "easy",
+        "totalMark" => 15,
+        "difficultyLevel" => "Medium",
         "creator" => "caxeeqw" //username of the question maker
 
     ],
