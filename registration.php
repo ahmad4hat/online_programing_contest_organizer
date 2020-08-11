@@ -17,6 +17,8 @@
             $error = urldecode($_GET["error"]);
             echo '<h4>Error :' . $error . '</h4>';
         } ?>
+
+
         <div>
             <form action="registration_handler.php" method="POST" enctype="multipart/form-data">
                 <label for="name">Name: </label>
