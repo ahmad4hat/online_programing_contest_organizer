@@ -74,7 +74,8 @@ if (!(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))) {
 // echo '<br>';
 // echo time();
 
-if (strtotime($_POST["dob"]) > (time() - (60 * 60 * 24 * 365 * 13))) {
+$dob = strtotime($_POST["dob"]);
+if ($dob > (time() - (60 * 60 * 24 * 365 * 13))) {
     $error = "you are not 13 yet";
     header('location: registration.php?error=' . urlencode($error));
     exit();
@@ -113,8 +114,8 @@ echo '<br>';
 // print_r($_FILES);
 
 
-$filedir = 'upload/profile_picture/' . $username . '.' . $ext;
 
+$profile_picture_location = "";
 if ($_FILES['profilePicture']['size'] == 0) {
     $error = "profile picture is not uploaded";
     header('location: registration.php?error=' . urlencode($error));
@@ -126,7 +127,9 @@ if ($_FILES['profilePicture']['size'] == 0) {
 } else {
     $ext = pathinfo($_FILES['profilePicture']['name'], PATHINFO_EXTENSION);
 
-    global $filedir;
+    $filedir = 'upload/profile_picture/' . $username . '.' . $ext;
+    global $profile_picture_location;
+    $profile_picture_location = $filedir;
     if (move_uploaded_file($_FILES['profilePicture']['tmp_name'], $filedir)) {
         echo "Done";
     } else {
@@ -152,6 +155,47 @@ if (count($row) > 0) {
 }
 
 
+$insert_into_user_sql = "
+INSERT INTO `users` (`id`, `username`, `name`, `email`, `user_type`, `address`, `bio`, `dob`, `password`, `educational_qualification`, `mobile`, `profile_picuture_location`, `created_at`, `occupation`) 
+VALUES (
+    NULL, 
+    '" . $username . "', 
+    '" . $_POST["name"] . "', 
+    '" . $_POST["email"] . "', 
+    '" . $typeofUser . "', 
+    '" . $_POST["address"] . "'
+    ,'" . $_POST["bio"] . "'
+    ,'" . $dob . "'
+    ,'" . $_POST["password"] . "'
+    ,'" . $_POST["educationalQualification"] . "'
+    ,'" . $_POST["mobile"] . "'
+    ,'" . $profile_picture_location . "'
+    ,current_timestamp(), 
+    '" . $_POST["occupation"] . "')";
+
+
+if (mysqli_query($connection, $insert_into_user_sql)) {
+    echo "New User record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    header('location: registration.php?error=sqkErrorInUserInserton');
+    exit();
+}
+
+$authToken = uniqid('token_', true);
+$expireDate = time() + 7200;
+
+setcookie('token', $authToken, $expireDate, '/');
+
+$sql_authoken = "INSERT INTO `auth_tokens` (`token`, `username`, `expiry_date`) VALUES ('" . $authToken . "', '" . $username . "', '" . $expireDate . "');";
+if (mysqli_query($connection, $sql_authoken)) {
+    echo "New User record created successfully";
+    header('location: home.php');
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    header('location: registration.php?error=sqlErrorInAuthToken');
+    exit();
+}
 
 // print_r($result);
 // while ($row = mysqli_fetch_assoc($result)) {
