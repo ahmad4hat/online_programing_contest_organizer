@@ -1,10 +1,6 @@
 <?php
 print_r($_POST);
-$connection = mysqli_connect('127.0.0.1:3306', 'root', '', 'test');
-$result = mysqli_query($connection, "
-SELECT 
-CURRENT_TIMESTAMP AS current_date_time;
-");
+
 
 print("");
 
@@ -22,29 +18,45 @@ if (!(isset($_POST["name"]) &&
     isset($_POST["occupation"]) &&
     isset($_POST["typeOfUser"]) &&
     // isset($_POST["profilePicture"]) &&
-    isset($_POST["bio"]))) {
+    isset($_POST["bio"]) &&
+    isset($_POST["address"]))) {
 
-    echo "some of the field is null";
+    $error = "some of the field is null ,please fill up all the form entry";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
 }
 
-if ((empty($_POST["name"]) ||
-    empty($_POST["username"]) ||
-    empty($_POST["email"]) ||
-    empty($_POST["password"]) ||
-    empty($_POST["confirmPassword"])  ||
-    empty($_POST["dob"])  ||
-    empty($_POST["educationalQualification"])  ||
-    empty($_POST["occupation"]) ||
+if (
+    empty(trim($_POST["name"])) ||
+    empty(trim($_POST["username"])) ||
+    empty(trim($_POST["email"])) ||
+    empty(trim($_POST["password"])) ||
+    empty(trim($_POST["confirmPassword"]))  ||
+    empty(trim($_POST["dob"]))  ||
+    empty(trim($_POST["educationalQualification"]))  ||
+    empty(trim($_POST["occupation"])) ||
     empty($_POST["typeOfUser"]) ||
+    empty(trim($_POST["bio"])) ||
+    empty(trim($_POST["address"]))
     // empty($_POST["profilePicture"]) ||
-    empty($_POST["bio"]))) {
+) {
 
-    echo "some of the field is empty";
+    $error = "some of the field is empty ,please fill up all the form";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
 }
 
 if ($_POST["password"] !== $_POST["confirmPassword"]) {
-    echo "password doest not match with confirm password";
+    $error = "password doest not match with confirm password";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
 }
+
+// echo '<hr>';
+// if (empty(trim("     a   "))) {
+//     echo "danla";
+// }
+// echo '<hr>';
 
 echo '<br>';
 echo strtotime($_POST["dob"]);
@@ -54,6 +66,12 @@ echo time();
 if (strtotime($_POST["dob"]) > (time() - (60 * 60 * 24 * 365 * 13))) {
     echo "you are not 13 yet";
 }
+
+if (!is_numeric($_POST["mobile"])) {
+    echo "mobile number is not correct and mobile number must be numeric";
+}
+
+$dob = strtotime($_POST["dob"]);
 
 
 $typeofUser = "";
@@ -66,7 +84,9 @@ foreach ($_POST["typeOfUser"] as $key => $value) {
 }
 
 echo $typeofUser;
+
 $username = trim($_POST["username"]);
+$username = str_replace(' ', '', $username);
 
 
 echo '<br>';
@@ -87,13 +107,20 @@ if ($_FILES['profilePicture']['size'] == 0) {
     if (move_uploaded_file($_FILES['profilePicture']['tmp_name'], $filedir)) {
         echo "Done";
     } else {
-        echo "error";
+        echo "something went wrong the file level error";
+        exit();
     }
 }
 
 
 
 
+
+$connection = mysqli_connect('127.0.0.1:3306', 'root', '', 'online_quiz');
+$result = mysqli_query($connection, "
+SELECT 
+CURRENT_TIMESTAMP AS current_date_time;
+");
 print_r($result);
 while ($row = mysqli_fetch_assoc($result)) {
     print_r($row);

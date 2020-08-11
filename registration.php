@@ -11,7 +11,12 @@
     <?php include 'header.php'; ?>
     <main>
         <h1>Register From here</h1>
+        <!-- <?php echo trim(" hh  aa  ") ?> -->
 
+        <?php if (isset($_GET["error"])) {
+            $error = urldecode($_GET["error"]);
+            echo '<h4>Error :' . $error . '</h4>';
+        } ?>
         <div>
             <form action="registration_handler.php" method="POST" enctype="multipart/form-data">
                 <label for="name">Name: </label>
@@ -33,18 +38,25 @@
 
                 <label for="password">Password : </label>
                 <input type="password" name="password" id="password" />
-                <small>password must be at least 6 character long </small>
+                <small>password can not be empty </small>
                 <br />
                 <br />
 
                 <label for="confirmPassword">Confirm Password : </label>
                 <input type="password" name="confirmPassword" id="confirmPassword" />
-                <small>password must be at least 6 character long </small>
+                <small>confirm password must match the password </small>
                 <br />
                 <br>
                 <label for="bio">Bio (A bit[pun] about yourself) : </label>
                 <br />
                 <textarea type="text" name="bio" id="bio" rows="4" cols="50"></textarea>
+                <br />
+                <br />
+
+
+                <label for="address">Address : </label>
+                <input type="text" name="address" id="address" />
+                <small>Address can't be empty </small>
                 <br />
                 <br />
 
@@ -67,10 +79,12 @@
                 <br />
                 <label for="occupation">Occupation </label>
                 <input type="text" name="occupation" id="occupation" />
+                <small>Address can't be empty </small>
                 <br />
                 <br />
                 <label for="mobile">mobile </label>
                 <input type="text" name="mobile" id="mobile" />
+                <small>Mobile can't be empty </small>
                 <br />
                 <br />
                 <label for="typeOfUser">Type Of User: </label>

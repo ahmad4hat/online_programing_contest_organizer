@@ -54,9 +54,7 @@ $questions = [
 </head>
 
 <body>
-    <header>
-        <h1>Header</h1>
-    </header>
+    <?php include 'header.php'; ?>
     <main>
         <?php foreach ($questions as $q) { ?>
             <h2>Problem ,(last date: <?php echo  strftime("%d/%m/%Y", $q["lastSubmissionDate"]); ?> )</h2>
