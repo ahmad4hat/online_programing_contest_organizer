@@ -26,6 +26,7 @@ if (!(isset($_POST["name"]) &&
     exit();
 }
 
+
 if (
     empty(trim($_POST["name"])) ||
     empty(trim($_POST["username"])) ||
@@ -52,26 +53,40 @@ if ($_POST["password"] !== $_POST["confirmPassword"]) {
     exit();
 }
 
+
+
+if (!(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))) {
+    //echo ("$email is a valid email address");
+    $error = "email is not valid";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
+}
+
+
 // echo '<hr>';
 // if (empty(trim("     a   "))) {
 //     echo "danla";
 // }
 // echo '<hr>';
 
-echo '<br>';
-echo strtotime($_POST["dob"]);
-echo '<br>';
-echo time();
+// echo '<br>';
+// echo strtotime($_POST["dob"]);
+// echo '<br>';
+// echo time();
 
 if (strtotime($_POST["dob"]) > (time() - (60 * 60 * 24 * 365 * 13))) {
-    echo "you are not 13 yet";
+    $error = "you are not 13 yet";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
 }
 
 if (!is_numeric($_POST["mobile"])) {
-    echo "mobile number is not correct and mobile number must be numeric";
+    $error = "mobile number is not correct and mobile number must be numeric";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
 }
 
-$dob = strtotime($_POST["dob"]);
+// $dob = strtotime($_POST["dob"]);
 
 
 $typeofUser = "";
@@ -83,10 +98,12 @@ foreach ($_POST["typeOfUser"] as $key => $value) {
     }
 }
 
-echo $typeofUser;
+
 
 $username = trim($_POST["username"]);
 $username = str_replace(' ', '', $username);
+
+
 
 
 echo '<br>';
@@ -96,14 +113,20 @@ echo '<br>';
 // print_r($_FILES);
 
 
+$filedir = 'upload/profile_picture/' . $username . '.' . $ext;
+
 if ($_FILES['profilePicture']['size'] == 0) {
-    echo "profile picture is not uploaded";
+    $error = "profile picture is not uploaded";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
 } else if (!getimagesize($_FILES["profilePicture"]["tmp_name"])) {
-    echo "profile picture is not a image";
+    $error =  "profile picture is not a image";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
 } else {
     $ext = pathinfo($_FILES['profilePicture']['name'], PATHINFO_EXTENSION);
-    $filedir = 'upload/profile_picture/' . $username . '.' . $ext;
 
+    global $filedir;
     if (move_uploaded_file($_FILES['profilePicture']['tmp_name'], $filedir)) {
         echo "Done";
     } else {
@@ -114,14 +137,23 @@ if ($_FILES['profilePicture']['size'] == 0) {
 
 
 
-
-
 $connection = mysqli_connect('127.0.0.1:3306', 'root', '', 'online_quiz');
+
+
 $result = mysqli_query($connection, "
-SELECT 
-CURRENT_TIMESTAMP AS current_date_time;
+select * from users where username= '" . $username . "'
 ");
-print_r($result);
-while ($row = mysqli_fetch_assoc($result)) {
-    print_r($row);
+$row = mysqli_fetch_assoc($result);
+
+if (count($row) > 0) {
+    $error = "username already exists ";
+    header('location: registration.php?error=' . urlencode($error));
+    exit();
 }
+
+
+
+// print_r($result);
+// while ($row = mysqli_fetch_assoc($result)) {
+//     print_r($row);
+// }
