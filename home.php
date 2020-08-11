@@ -1,3 +1,4 @@
+<?php include 'helper.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +11,20 @@
 <body>
     <?php include 'header.php' ?>
     <main>
-        <h1>Welcome</h1>
+        <h1>Welcome <?php if ($user) {
+                        echo $user['name'];
+                    }; ?> </h1>
+
+        <?php if (!$user) { ?>
+            <h3>You are not logged in, please log in or register</h3>
+            <a href="register.php">Register</a>
+            <a href="login.php">Login</a>
+            <br>
+
+        <?php } ?>
     </main>
+
+
 
 
 

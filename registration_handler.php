@@ -156,7 +156,7 @@ if (count($row) > 0) {
 
 
 $insert_into_user_sql = "
-INSERT INTO `users` (`id`, `username`, `name`, `email`, `user_type`, `address`, `bio`, `dob`, `password`, `educational_qualification`, `mobile`, `profile_picuture_location`, `created_at`, `occupation`) 
+INSERT INTO `users` (`id`, `username`, `name`, `email`, `user_type`, `address`, `bio`, `dob`, `password`, `educational_qualification`, `mobile`, `profile_picture_location`, `created_at`, `occupation`) 
 VALUES (
     NULL, 
     '" . $username . "', 
