@@ -13,7 +13,7 @@
         <h1>Register From here</h1>
 
         <div>
-            <form action="registration_handler.php" method="POST">
+            <form action="registration_handler.php" method="POST" enctype="multipart/form-data">
                 <label for="name">Name: </label>
                 <input type="text" name="name" id="name" />
                 <small>Name could not empty</small>
@@ -41,7 +41,11 @@
                 <input type="password" name="confirmPassword" id="confirmPassword" />
                 <small>password must be at least 6 character long </small>
                 <br />
-
+                <br>
+                <label for="bio">Bio (A bit[pun] about yourself) : </label>
+                <br />
+                <textarea type="text" name="bio" id="bio" rows="4" cols="50"></textarea>
+                <br />
                 <br />
 
 
