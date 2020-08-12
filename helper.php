@@ -7,6 +7,7 @@ function  delete_Token_Cookie()
     $sqlc = "DELETE FROM `auth_tokens` WHERE `auth_tokens`.`token` = '" . $_COOKIE['token']  . "'";
     $resultc = mysqli_query($connection, $sqlc);
     $rowc = mysqli_fetch_assoc($resultc);
+    $_SESSION["status"] = null;
     setcookie('token', '', time(), '/');
 }
 $user = null;
