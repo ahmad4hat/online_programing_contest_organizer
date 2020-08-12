@@ -1,5 +1,6 @@
+<?php include 'helper.php'; ?>
 <?php
-// echo uniqid("test",true );
+
 $questions = [
     [
         'id' => uniqid("test", true),
@@ -56,6 +57,12 @@ $questions = [
 <body>
     <?php include 'header.php'; ?>
     <main>
+
+        <?php if (isset($_GET["error"])) {
+            $error = urldecode($_GET["error"]);
+            echo '<h4>Error :' . $error . '</h4>';
+        } ?>
+        <H1>Question List</H1>
         <?php foreach ($questions as $q) { ?>
             <h2>Problem ,(last date: <?php echo  strftime("%d/%m/%Y", $q["lastSubmissionDate"]); ?> )</h2>
             <h4>Creator :<em><?php echo $q["creator"]; ?> </em></h4>

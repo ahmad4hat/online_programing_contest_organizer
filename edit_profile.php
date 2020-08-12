@@ -14,26 +14,27 @@
         <h1>Register From here</h1>
         <!-- <?php echo trim(" hh  aa  ") ?> -->
 
-        <?php if (isset($_GET["error"])) {
-            $error = urldecode($_GET["error"]);
-            echo '<h4>Error :' . $error . '</h4>';
+        <?php if (!$user) {
+            $error = "you cant see your profile without log in";
+            header('location: login.php?error=' . urlencode($error));
+            exit();
         } ?>
 
 
         <div>
             <form action="edit_profile_handler.php" method="POST" enctype="multipart/form-data">
                 <label for="name">Name: </label>
-                <input type="text" name="name" id="name" required />
+                <input type="text" name="name" id="name" required value="<?php echo $user['name'] ?>" />
                 <small>Name could not empty</small>
                 <br />
                 <br />
-                <label for="username">Username: </label>
-                <input type="text" name="username" id="username" required />
+                <label for=" username">Username: </label>
+                <input type="text" name="username" id="username" required value="<?php echo $user['username'] ?>" />
                 <small>Username could not empty , and have to be unique for each user && all whitespace will be removed</small>
                 <br />
                 <br />
                 <label for="email">Email : </label>
-                <input type="email" name="email" id="email" required />
+                <input type="email" name="email" id="email" required value="<?php echo $user['email'] ?>" />
                 <small>You can't have multiple account account for with same email</small>
                 <br />
                 <br />
@@ -43,13 +44,13 @@
 
                 <label for="bio">Bio (A bit[pun] about yourself) : </label>
                 <br />
-                <textarea type="text" name="bio" id="bio" rows="4" cols="50" required></textarea>
+                <textarea type="text" name="bio" id="bio" rows="4" cols="50" required><?php echo $user['bio'] ?></textarea>
                 <br />
                 <br />
 
 
                 <label for="address">Address : </label>
-                <input type="text" name="address" id="address" required />
+                <input type="text" name="address" id="address" required value="<?php echo $user['address'] ?>" />
                 <small>Address can't be empty </small>
                 <br />
                 <br />
@@ -72,12 +73,12 @@
                 <br />
                 <br />
                 <label for="occupation">Occupation </label>
-                <input type="text" name="occupation" id="occupation" required />
+                <input type="text" name="occupation" id="occupation" required value="<?php echo $user['occupation'] ?>" />
                 <small>Occupation can't be empty </small>
                 <br />
                 <br />
                 <label for="mobile">mobile </label>
-                <input type="tel" name="mobile" id="mobile" required />
+                <input type="tel" name="mobile" id="mobile" required value="<?php echo $user['mobile'] ?>" />
                 <small>Mobile can't be empty </small>
                 <br />
                 <br />
