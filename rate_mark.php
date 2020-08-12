@@ -1,23 +1,22 @@
 <?php include 'helper.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Answer Submission</title>
+    <title>Mark Rate</title>
 </head>
 
 <body>
     <?php include 'header.php'; ?>
     <?php if (!$user) {
-        $error = "you cant see your answer without log in";
+        $error = "you cant see your submit your mark rating on question without log in";
         header('location: login.php?error=' . urlencode($error));
         exit();
     } ?>
 
-    <h1>Answer Submission</h1>
+    <h1> Rate a mark </h1>
 
     <form action="" method="post">
         <label for="problemStatement">Problem statement :</label>
@@ -35,14 +34,30 @@
         <br>
 
 
+
         <label for="difficulty">Difficulty :</label>
         <p id="difficulty">Easy</p>
         <br>
         <br>
 
-        <label for="submittedAnswer">Your Answer:</label>
+        <h2>You got 7/10</h2>
+
+        <h3>Mark given by : Username</h3>
+
+
+        <h3>Rate the mark submission</h3>
+
+        <label for="rating">Your rating:</label>
+
+
         <br>
-        <textarea type="text" name="submittedAnswer" cols="200" rows="30"></textarea>
+        <?php
+        for ($i = 1; $i <= 5; $i++) {
+            echo "<input type=\"radio\"  name=\"rating\" value=" . $i . ">";
+            echo "<label for=\"" . $i . "\">" . $i . "</label>";
+        }
+        ?>
+
         <br>
         <br>
 
@@ -51,6 +66,7 @@
 
 
     </form>
+
 </body>
 
 </html>

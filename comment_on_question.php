@@ -1,23 +1,22 @@
 <?php include 'helper.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Answer Submission</title>
+    <title>comment on question</title>
 </head>
 
 <body>
     <?php include 'header.php'; ?>
     <?php if (!$user) {
-        $error = "you cant see your answer without log in";
+        $error = "you cant see your submit your comment on question without log in";
         header('location: login.php?error=' . urlencode($error));
         exit();
     } ?>
 
-    <h1>Answer Submission</h1>
+    <h1> Comment on question </h1>
 
     <form action="" method="post">
         <label for="problemStatement">Problem statement :</label>
@@ -40,9 +39,9 @@
         <br>
         <br>
 
-        <label for="submittedAnswer">Your Answer:</label>
+        <label for="comment">Your comment:</label>
         <br>
-        <textarea type="text" name="submittedAnswer" cols="200" rows="30"></textarea>
+        <textarea type="text" name="comment" cols="100" rows="10"></textarea>
         <br>
         <br>
 
@@ -51,6 +50,7 @@
 
 
     </form>
+
 </body>
 
 </html>

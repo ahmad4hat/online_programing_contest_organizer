@@ -1,23 +1,22 @@
 <?php include 'helper.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Answer Submission</title>
+    <title>rate on question</title>
 </head>
 
 <body>
     <?php include 'header.php'; ?>
     <?php if (!$user) {
-        $error = "you cant see your answer without log in";
+        $error = "you cant see your rate question without log in";
         header('location: login.php?error=' . urlencode($error));
         exit();
     } ?>
 
-    <h1>Answer Submission</h1>
+    <h1> Rate on question </h1>
 
     <form action="" method="post">
         <label for="problemStatement">Problem statement :</label>
@@ -40,17 +39,28 @@
         <br>
         <br>
 
-        <label for="submittedAnswer">Your Answer:</label>
+        <label for="rating">Your rating:</label>
+
+
         <br>
-        <textarea type="text" name="submittedAnswer" cols="200" rows="30"></textarea>
+        <?php
+        for ($i = 1; $i <= 5; $i++) {
+            echo "<input type=\"radio\"  name=\"rating\" value=" . $i . ">";
+            echo "<label for=\"" . $i . "\">" . $i . "</label>";
+        }
+        ?>
+
         <br>
         <br>
+
+
 
         <input type="submit" value="submit" name="submit">
 
 
 
     </form>
+
 </body>
 
 </html>

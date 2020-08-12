@@ -9,6 +9,11 @@
             <li><a href="question_creation.php">Question Creation</a></li>
             <li><a href="answer_submission.php">Answer Submission</a></li>
             <li><a href="mark_submission.php">Mark Submission</a></li>
+            <li><a href="comment_on_question.php">Comment on Quesiton</a></li>
+            <li><a href="rate_question.php">rate a question</a></li>
+            <li><a href="rate_mark">Rate Mark</a></li>
+            <li><a href="mark_review.php">Mark Review</a></li>
+
             <li><a href="logout.php">logout</a></li>
 
         </ul>
