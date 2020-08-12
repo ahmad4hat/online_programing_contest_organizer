@@ -58,9 +58,14 @@ $questions = [
     <?php include 'header.php'; ?>
     <main>
 
-        <?php if (isset($_GET["error"])) {
-            $error = urldecode($_GET["error"]);
-            echo '<h4>Error :' . $error . '</h4>';
+        <!-- <?php if (isset($_GET["error"])) {
+                    $error = urldecode($_GET["error"]);
+                    echo '<h4>Error :' . $error . '</h4>';
+                } ?> -->
+        <?php if (!$user) {
+            $error = "you see questions without log in";
+            header('location: login.php?error=' . urlencode($error));
+            exit();
         } ?>
         <H1>Question List</H1>
         <?php foreach ($questions as $q) { ?>

@@ -12,7 +12,7 @@
 <body>
     <?php include 'header.php'; ?>
     <?php if (!$user) {
-        $error = "you cant see your profile without log in";
+        $error = "you cant create question  without log in";
         header('location: login.php?error=' . urlencode($error));
         exit();
     } ?>

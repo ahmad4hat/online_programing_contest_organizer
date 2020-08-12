@@ -6,13 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question Creation</title>
+    <title>Answer Submission</title>
 </head>
 
 <body>
     <?php include 'header.php'; ?>
     <?php if (!$user) {
-        $error = "you cant give marks without log in";
+        $error = "you cant see your answer without log in";
         header('location: login.php?error=' . urlencode($error));
         exit();
     } ?>
@@ -40,13 +40,11 @@
         <br>
         <br>
 
-        <label for="submittedAnswer">Submitted Answer:</label>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea aliquam in facere et, error magni.</p>
+        <label for="submittedAnswer">Your Answer:</label>
+        <textarea type="text" name="submittedAnswer" col="50" row "50"></textarea>
         <br>
         <br>
 
-        <h2>Obtained Marks: </h2>
-        <input type="text" name="obtainedMarks">
         <input type="submit" value="submit" name="submit">
 
 
