@@ -11,7 +11,6 @@
             <li><a href="mark_submission.php">Mark Submission</a></li>
             <li><a href="logout.php">logout</a></li>
 
-
         </ul>
     </nav>
 </header>

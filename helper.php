@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-function  delete_Token_Cookie()
+
+function  delete_Token_Cookie(): void
 {
     $connection = mysqli_connect('127.0.0.1:3306', 'root', '', 'online_quiz');
     $sqlc = "DELETE FROM `auth_tokens` WHERE `auth_tokens`.`token` = '" . $_COOKIE['token']  . "'";
