@@ -91,13 +91,9 @@ if (!is_numeric($_POST["mobile"])) {
 
 
 $typeofUser = "";
-foreach ($_POST["typeOfUser"] as $key => $value) {
-    if ($typeofUser === "") {
-        $typeofUser = $value;
-    } else {
-        $typeofUser = $typeofUser . ',' . $value;
-    }
-}
+
+
+$typeofUser= $_POST["typeOfUser"];
 
 
 

@@ -19,7 +19,7 @@
     <h1>Profile</h1>
     <a href="edit_profile.php">Edit Profile</a>
     <p>Profile picture</p>
-    <img src="<?php echo '../'. $user["profile_picture_location"] ?>" alt="" height="250px" width="250px">
+    <img src="<?php echo $user["profile_picture_location"] ?>" alt="" height="250px" width="250px">
     <p>Name : <?php echo $user["name"] ?></p>
     <p>username : <?php echo $user["username"] ?></p>
     <p>email : <?php echo $user["email"] ?></p>

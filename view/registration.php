@@ -89,13 +89,19 @@
                 <br />
                 <br />
                 <label for="typeOfUser">Type Of User: </label>
+                <input type="radio" id="male" name="typeOfUser" value="participant" checked="checked" >
+                <label for="male">Participant</label>
+                <input type="radio" id="female" name="typeOfUser" value="Teacher">
+                <label for="female">Teacher</label><br>
 
-                <label for="participant">Participant</label>
+                <!-- <label for="participant">Participant</label>
                 <input type="checkbox" name="typeOfUser[participant]" id="participant" value="participant" />
                 <label for="questionCreator">Question Creator</label>
                 <input type="checkbox" name="typeOfUser[questionCreator]" id="questionCreator" value="questionCreator" />
                 <label for="judge">Judge</label>
-                <input type="checkbox" name="typeOfUser[judge]" id="judge" value="judge" />
+                <input type="checkbox" name="typeOfUser[judge]" id="judge" value="judge" /> -->
+
+
 
                 <br />
                 <br />
