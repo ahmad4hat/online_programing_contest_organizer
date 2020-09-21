@@ -1,15 +1,4 @@
-<?php include 'helper.php'; ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registration</title>
-</head>
-
-<body>
-    <?php include 'header.php'; ?>
+<?php include 'partials/top.php'; ?>
     <main>
         <h1>Register From here</h1>
         <!-- <?php echo trim(" hh  aa  ") ?> -->
@@ -108,6 +97,4 @@
             </form>
         </div>
     </main>
-</body>
-
-</html>
+    <?php include 'partials/end.php'; ?>

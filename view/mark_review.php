@@ -1,15 +1,4 @@
-<?php include 'helper.php'; ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark review</title>
-</head>
-
-<body>
-    <?php include 'header.php'; ?>
+<?php include 'partials/top.php'; ?>
     <?php if (!$user) {
         $error = "you cant see your submit your mark review on question without log in";
         header('location: login.php?error=' . urlencode($error));
@@ -58,7 +47,4 @@
 
 
     </form>
-
-</body>
-
-</html>
+    <?php include 'partials/end.php'; ?>

@@ -1,16 +1,5 @@
-<?php include 'helper.php' ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-
-<body>
-    <?php include 'header.php' ?>
-    <main>
+<?php include 'partials/top.php'; ?>
+    
         <h1>Welcome <?php if ($user) {
                         echo $user['name'];
                     }; ?> </h1>
@@ -22,13 +11,10 @@
             <br>
 
         <?php } ?>
-    </main>
+    
 
 
 
 
 
-
-</body>
-
-</html>
+    <?php include 'partials/end.php'; ?>

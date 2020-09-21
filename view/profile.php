@@ -1,15 +1,4 @@
-<?php include 'helper.php'; ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-</head>
-
-<body>
-    <?php include 'header.php'; ?>
+<?php include 'partials/top.php'; ?>
 
     <?php if (!$user) {
         $error = "you cant see your profile without log in";
@@ -32,8 +21,4 @@
 
 
 
-
-
-</body>
-
-</html>
+<?php include 'partials/end.php'; ?>
