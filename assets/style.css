@@ -21,3 +21,16 @@ body {
   font-size: 1.6rem;
   display: grid;
   grid-template-rows: auto 1fr auto; }
+
+nav {
+  background-color: bisque; }
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none; }
+
+nav li a {
+  text-decoration: none;
+  margin: 0.5rem 0.5rem; }

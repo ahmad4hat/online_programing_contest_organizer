@@ -81,8 +81,8 @@
                 <label for="typeOfUser">Type Of User: </label>
                 <input type="radio" id="male" name="typeOfUser" value="participant" checked="checked" >
                 <label for="male">Participant</label>
-                <input type="radio" id="female" name="typeOfUser" value="Teacher">
-                <label for="female">Teacher</label><br>
+                <input type="radio" id="teacher" name="typeOfUser" value="teacher">
+                <label for="teacher">Teacher</label><br>
 
                 <!-- <label for="participant">Participant</label>
                 <input type="checkbox" name="typeOfUser[participant]" id="participant" value="participant" />
