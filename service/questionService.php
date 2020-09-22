@@ -5,7 +5,7 @@ require_once('database_helper.php');
 
 
 
-function getById($id)
+function getQuestionById($id)
 {
     $con = dbConnection();
     $sql = "select * from questions where id='{$id}'";
@@ -14,7 +14,7 @@ function getById($id)
     return $row;
 }
 
-function getAllUser()
+function getAllQuestions()
 {
     $con = dbConnection();
     $sql = "select * from questions";

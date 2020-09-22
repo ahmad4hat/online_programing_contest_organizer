@@ -1,90 +1,38 @@
+<?php include 'partials/top.php'; ?>
 
 <?php
 
-$questions = [
-    [
-        'id' => uniqid("test", true),
-        'problemStatement' => "
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo explicabo accusantium consequuntur minus recusandae ullam, unde laborum possimus eius totam!
-    ",
-        'expectedOutput' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia, quia. ",
-        "lastSubmissionDate" => time() + 4800,
-        "createdAt" => time(),
-        "totalMark" => 10,
-        "difficultyLevel" => "Easy",
-        "creator" => "caxeeqw" //username of the question maker
-
-    ],
-    [
-        'id' => uniqid("test", true),
-        'problemStatement' => "
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo explicabo accusantium consequuntur minus recusandae ullam, unde laborum possimus eius totam!
-    ",
-        'expectedOutput' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia, quia. ",
-        "lastSubmissionDate" => time() + 4800,
-        "createdAt" => time(),
-        "totalMark" => 10,
-        "difficultyLevel" => "Hard",
-        "creator" => "cax2eqw" //username of the question maker
-
-    ],
-    [
-        'id' => uniqid("test", true),
-        'problemStatement' => "
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-     Quo explicabo accusantium consequuntur minus recusandae ullam, unde laborum possimus eius totam!
-    ",
-        'expectedOutput' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia, quia. ",
-        "lastSubmissionDate" => time() + 4800,
-        "createdAt" => time(),
-        "totalMark" => 15,
-        "difficultyLevel" => "Medium",
-        "creator" => "caxeeqw" //username of the question maker
-
-    ],
-];
+require_once('../service/questionService.php');
+?>
+<?php if (!$user) {
+    $error = "you cant see your profile without log in";
+    header('location: login.php?error=' . urlencode($error));
+    exit();
+}
+$questions = getAllQuestions();
 ?>
 
-<?php include 'partials/top.php'; ?>
-    <main>
-
-        <!-- <?php if (isset($_GET["error"])) {
-                    $error = urldecode($_GET["error"]);
-                    echo '<h4>Error :' . $error . '</h4>';
-                } ?> -->
-        <?php if (!$user) {
-            $error = "you see questions without log in";
-            header('location: login.php?error=' . urlencode($error));
-            exit();
-        } ?>
-        <H1>Question List</H1>
-        <?php foreach ($questions as $q) { ?>
-            <h2>Problem ,(last date: <?php echo  strftime("%d/%m/%Y", $q["lastSubmissionDate"]); ?> )</h2>
-            <h4>Creator :<em><?php echo $q["creator"]; ?> </em></h4>
-            <p>Problem :</p>
+<div class="question container">
 
 
-            <?php foreach (explode("\n", $q["problemStatement"]) as $line) { ?>
-                <?php echo '<p>' . $line . '</p>' ?>
-            <?php } ?>
+    <?php for ($i = 0; $i != count($questions); $i++) { ?>
 
-            <p>
-                Expected Output:
-            </p>
-
-            <?php foreach (explode("\n", $q["expectedOutput"]) as $line) { ?>
-                <?php echo '<p>' . $line . '</p>' ?>
-            <?php } ?>
-
-
-            <h4>
-                Created At : <em><?php echo  strftime("%d/%m/%Y", $q["lastSubmissionDate"]); ?> </em>
-            </h4>
-
-
+        <div class="questions__card">
+            <p><?= $questions[$i]['difficulty'] ?></p>
 
             <hr>
-        <?php } ?>
-    </main>
-  
+            <h4>Problem statement :</h2>
+                <p><?= $questions[$i]['problemStatement'] ?></p>
+                <h4>Expected output :</h2>
+                    <p><?= $questions[$i]['expectedOutput'] ?></p>
+                    <a href="question.php?id=<?= $questions[$i]['id'] ?>">More details</a>
+
+        </div>
+
+
+    <?php } ?>
+
+
+</div>
+
 <?php include 'partials/end.php'; ?>

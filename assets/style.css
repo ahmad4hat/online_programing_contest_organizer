@@ -35,8 +35,22 @@ nav li a {
   margin: 0.5rem 0.5rem; }
 
 .errorText {
-  display: inline-block;
-  background-color: red; }
+  display: inline;
+  color: red; }
 
 .hidden {
   display: none; }
+
+.questions {
+  display: flex;
+  justify-content: space-evenly; }
+  .questions__card {
+    display: flex;
+    flex-direction: column;
+    background-color: azure;
+    margin: 20px;
+    padding: 3rem; }
+
+.container {
+  width: 80%;
+  margin: 0 auto; }
