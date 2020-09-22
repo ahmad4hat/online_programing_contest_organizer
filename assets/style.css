@@ -14,7 +14,6 @@ html {
 
 body {
   font-family: "Nunito", sans-serif;
-  background-color: aliceblue;
   color: #6d5d4b;
   font-weight: 300;
   line-height: 1.6;
@@ -34,3 +33,10 @@ nav ul {
 nav li a {
   text-decoration: none;
   margin: 0.5rem 0.5rem; }
+
+.errorText {
+  display: inline-block;
+  background-color: red; }
+
+.hidden {
+  display: none; }
