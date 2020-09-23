@@ -11,7 +11,13 @@ require_once('../service/markService.php');
     header('location: login.php?error=' . urlencode($error));
     exit();
 }
-$marks = getAllMarks();
+$marks = null;
+
+if ($user['user_type'] == 'teacher') {
+    $marks = getMarkTeacher($user['username']);
+} else {
+    $marks = getMarkParticipant($user['username']);
+}
 ?>
 
 

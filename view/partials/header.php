@@ -14,9 +14,9 @@
                     <li><a href="answers.php">Answers</a></li>
                 <?php } ?>
                 <?php if ($user['user_type'] === 'participant') { ?>
-                    <li><a href="rate_question.php">rate a question</a></li>
+                    <!-- <li><a href="rate_question.php">rate a question</a></li>
                     <li><a href="answer_submission.php">Answer Submission</a></li>
-                    <li><a href="rate_mark.php">Rate Mark</a></li>
+                    <li><a href="rate_mark.php">Rate Mark</a></li> -->
                 <?php } ?>
                 <li><a href="questions.php">Questions</a></li>
                 <li><a href="marks.php">Marks</a></li>

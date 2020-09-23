@@ -18,14 +18,7 @@ if (!$user) {
     exit();
 }
 
-if ($user) {
-    if ($user['user_type'] !== 'teacher') {
-        $res["msg"] = "you cant create question unless you are a teacher";
-        echo json_encode($res);
 
-        exit();
-    }
-}
 
 if (!isset($_POST['json'])) {
     $res["msg"] = "There was no data send here json";
