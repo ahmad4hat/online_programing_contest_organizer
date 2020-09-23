@@ -65,7 +65,7 @@ if (strlen($value["submittedAnswer"]) < 10) {
 
 
 
-$status = create($value);
+$status = createAnswer($value);
 
 if ($status) {
     $res['success'] = true;
@@ -74,5 +74,4 @@ if ($status) {
     $res['success'] = false;
     $res['msg'] = "Internal problem with the database";
     echo json_encode($res);
-    
 }

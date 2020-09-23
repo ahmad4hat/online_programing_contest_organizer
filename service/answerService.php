@@ -26,7 +26,7 @@ function getAllAnswers()
     return $answers;
 }
 
-function create($answers)
+function createAnswer($answers)
 {
     $con = dbConnection();
     $sql = "INSERT INTO `answers` (`id`, `question_id`, `submittedAnswer`, `submissionDate`, `username`) VALUES (NULL, '{$answers['question_id']}', '{$answers['submittedAnswer']}', current_timestamp(), '{$answers['username']}')";
