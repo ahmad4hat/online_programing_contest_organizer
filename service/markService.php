@@ -26,6 +26,30 @@ function getAllMarks()
     return $marks;
 }
 
+function getMarkParticipant($participant_username)
+{
+    $con = dbConnection();
+    $sql = "select * from marks where username_participant='{$participant_username}'";
+    $result = mysqli_query($con, $sql);
+    $marks = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($marks, $row);
+    };
+    return $marks;
+}
+
+function getMarkTeacher($teacher_username)
+{
+    $con = dbConnection();
+    $sql = "select * from marks where username_teacher='{$teacher_username}'";
+    $result = mysqli_query($con, $sql);
+    $marks = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($marks, $row);
+    };
+    return $marks;
+}
+
 function createMark($mark)
 {
     $con = dbConnection();

@@ -6,6 +6,7 @@
         exit();
     } ?>
 
+<div class="container">
     <h1>Question Creation</h1>
 
     <form action="" method="post" id="questionForm">
@@ -79,7 +80,7 @@
 
     </form>
 
-
+</div>
     
     
     <script>

@@ -22,17 +22,28 @@ body {
   grid-template-rows: auto 1fr auto; }
 
 nav {
-  background-color: bisque; }
+  background-color: #23395d;
+  color: white; }
 
 nav ul {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   flex-wrap: wrap;
   list-style: none; }
 
 nav li a {
   text-decoration: none;
+  text-decoration: none;
+  color: inherit;
   margin: 0.5rem 0.5rem; }
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #23395d;
+  color: white; }
 
 .errorText {
   display: inline;

@@ -22,41 +22,44 @@ if (!$user['user_type'] === 'teacher') {
 $answer = getAnswersById($_GET['id']);
 $question = getQuestionById($answer['question_id'])
 ?>
-
-<h1>Mark Submission</h1>
-
-<form action="" method="post" id="formMark">
-    <h2 for="problemStatement">Problem statement :</h2>
-    <p id="problemStatement"><?= $question['problemStatement'] ?></p>
-    <br>
-    <br>
-    <h2 for="expectedOutput">Expected Output :</h2>
-    <p id="expectedOutput"><?= $question['expectedOutput'] ?></p>
-    <br>
-    <br>
-
-    <h2>Difficulty : <em><?= $question['difficulty'] ?></em></h2>
-    <br>
-    <br>
+<div class="container">
 
 
+    <h1>Mark Submission</h1>
 
-    <h2>Submitted Answer:</h2>
-    <p><?= $answer['submittedAnswer'] ?></p>
-    <br>
-    <br>
+    <form action="" method="post" id="formMark">
+        <h2 for="problemStatement">Problem statement :</h2>
+        <p id="problemStatement"><?= $question['problemStatement'] ?></p>
+        <br>
+        <br>
+        <h2 for="expectedOutput">Expected Output :</h2>
+        <p id="expectedOutput"><?= $question['expectedOutput'] ?></p>
+        <br>
+        <br>
 
-    <h2>Total Mark : <em><?= $question['totalMark'] ?></em></h2>
-    <br>
-    <br>
-    <label for="mark">Obtained Marks:</label>
-    <input type="text" name="mark" id="mark">
-    <p class="errorText hidden" id="markErrorText">hello </p>
-    <br>
-    <input type="submit" value="submit" name="submit">
+        <h2>Difficulty : <em><?= $question['difficulty'] ?></em></h2>
+        <br>
+        <br>
 
 
-</form>
+
+        <h2>Submitted Answer:</h2>
+        <p><?= $answer['submittedAnswer'] ?></p>
+        <br>
+        <br>
+
+        <h2>Total Mark : <em><?= $question['totalMark'] ?></em></h2>
+        <br>
+        <br>
+        <label for="mark">Obtained Marks:</label>
+        <input type="text" name="mark" id="mark">
+        <p class="errorText hidden" id="markErrorText">hello </p>
+        <br>
+        <input type="submit" value="submit" name="submit">
+
+
+    </form>
+</div>
 <script>
     const username_teacher = "<?= $user['username'] ?>";
     const username_participant = "<?= $answer['username'] ?>";
