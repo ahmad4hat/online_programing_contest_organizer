@@ -53,7 +53,7 @@ function getMarkTeacher($teacher_username)
 function createMark($mark)
 {
     $con = dbConnection();
-    $sql = "INSERT INTO `marks` (`id`, `answer_id`, `username_teacher`, `mark`, `username_participant`) VALUES (NULL, '{$mark['answer_id']}', '{$mark['username_participant']}', '{$mark['mark']}', '{$mark['username_participant']}')";
+    $sql = "INSERT INTO `marks` (`id`, `answer_id`, `username_teacher`, `mark`, `username_participant`) VALUES (NULL, '{$mark['answer_id']}', '{$mark['username_teacher']}', '{$mark['mark']}', '{$mark['username_participant']}')";
     if (mysqli_query($con, $sql)) {
         return true;
     } else {

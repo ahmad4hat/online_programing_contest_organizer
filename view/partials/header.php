@@ -18,9 +18,8 @@
                     <li><a href="answer_submission.php">Answer Submission</a></li>
                     <li><a href="rate_mark.php">Rate Mark</a></li>
                 <?php } ?>
-                <li><a href="comment_on_question.php">Comment on Question</a></li>
                 <li><a href="questions.php">Questions</a></li>
-                <li><a href="mark_review.php">Mark Review</a></li>
+                <li><a href="marks.php">Marks</a></li>
                 <li><a href="logout.php">logout</a></li>
             <?php } ?>
 

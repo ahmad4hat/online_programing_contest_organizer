@@ -1,44 +1,112 @@
 <?php include 'partials/top.php'; ?>
+
+<?php
+
+require_once('../service/questionService.php');
+?>
 <?php if (!$user) {
-    $error = "you cant see your submit your comment on question without log in";
+    $error = "you cant see your profile without log in";
     header('location: login.php?error=' . urlencode($error));
     exit();
-} ?>
+}
+$question = getQuestionById($_GET['id']);
+?>
 
-<h1> Comment on question </h1>
+<h1> Comment on question</h1>
 
-<form action="" method="post">
-    <label for="problemStatement">Problem statement :</label>
-    <p id="problemStatement">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis ullam aperiam, reiciendis placeat temporibus porro cum et modi rerum reprehenderit.</p>
-    <br>
-    <br>
-    <label for="expectedOutput">Expected Output :</label>
-    <p id="expectedOutput">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi animi quidem sint, officiis laudantium delectus iusto reiciendis praesentium eos voluptatum sunt ullam. Vel itaque autem voluptatibus laudantium vero, quod est!</p>
-    <br>
-    <br>
+<div class="question container">
 
-    <label for="totalMarks">Total Mark :</label>
-    <p id="totalMarks">Total mark 10</p>
-    <br>
-    <br>
-
-
-    <label for="difficulty">Difficulty :</label>
-    <p id="difficulty">Easy</p>
-    <br>
-    <br>
-
-    <label for="comment">Your comment:</label>
-    <br>
-    <textarea type="text" name="comment" cols="100" rows="10"></textarea>
-    <br>
-    <br>
-
-    <input type="submit" value="submit" name="submit">
+    <h2>problem Statement </h2>
+    <p></p><?= $question['problemStatement'] ?></p>
+    <h2>Expected Output: </h2>
+    <p></p><?= $question['expectedOutput'] ?></p>
+    <h2>Instructions</h2>
+    <p></p><?= $question['instructions'] ?></p>
+    <h2>Hints :</h2>
 
 
 
-</form>
+    <br>
+    <br>
 
+
+    <form action="" method="post" id="formEl">
+        <label for="comment">comment :</label>
+        <p class="errorText hidden" id="commentErrorText">Hello </p>
+        <br>
+        <textarea name="comment" id="comment" cols="50" rows="10"></textarea>
+        <br>
+        <br>
+
+        <input type="submit">
+
+
+    </form>
+
+
+
+
+
+
+
+
+</div>
+<script>
+    const username = "<?= $user['username'] ?>";
+    const question_id = "<?= $question['id'] ?>";
+
+    const commentEl = document.querySelector('#comment');
+    const commentErrorTextEl = document.querySelector('#commentErrorText');
+    const validateComment = (value) => {
+        let errorText = null;
+
+        if (!value) {
+            errorText = "comment can not be empty";
+        } else if (value == "") {
+            errorText = "comment can not be empty";
+        } else if (value.length < 5) {
+            errorText = "comment at least 5 character long "
+        }
+        if (errorText) {
+            commentErrorTextEl.innerText = errorText;
+            commentErrorTextEl.style.display = "inline"
+
+        } else {
+            commentErrorTextEl.innerText = null;
+            commentErrorTextEl.style.display = "none"
+
+        }
+
+        return errorText
+    }
+
+    commentEl.addEventListener('keyup', (event) => validateComment(event.target.value));
+    const formEl = document.querySelector("#formEl");
+    formEl.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const comment = commentEl.value;
+        if (validateComment(comment)) {
+            return false;
+        }
+        const sendObject = {
+            comment,
+            question_id,
+            username
+        };
+
+        // console.log(sendObject);
+        const sendJson = JSON.stringify(sendObject);
+
+        ajaxJson('../php/comment_on_question_handler.php', sendJson, (v) => {
+            v = JSON.parse(v);
+            console.log(v)
+            if (v.success) {
+                window.location = "question.php?id=" + question_id;
+            }
+        })
+
+
+    })
+</script>
 
 <?php include 'partials/end.php'; ?>

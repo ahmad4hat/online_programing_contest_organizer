@@ -3,6 +3,7 @@
 <?php
 
 require_once('../service/questionService.php');
+require_once('../service/commentOnQuestionService.php');
 ?>
 <?php if (!$user) {
     $error = "you cant see your profile without log in";
@@ -37,6 +38,39 @@ $question = getQuestionById($_GET['id']);
         <a href="answer_submission.php?id=<?= $question['id'] ?>">Answer this question</a>
 
     <?php } ?>
+
+
+    <br>
+    <br>
+    <a href="comment_on_question.php?id=<?= $question['id'] ?>">
+        <h2>Comment on question </h2>
+    </a>
+
+
+    <h1>Comments</h1>
+
+    <?php
+    $comments = getQuestionCommentFromQuestionId($_GET['id']);
+
+    ?>
+
+    <div class="questions">
+
+        <?php for ($i = 0; $i != count($comments); $i++) { ?>
+
+            <div class="questions__card">
+                <h2>Username : <?= $comments[$i]['username'] ?></h2>
+
+                <hr>
+                <p>comment : <?= $comments[$i]['comment'] ?></p>
+
+            </div>
+
+
+        <?php } ?>
+
+    </div>
+
 
 
 

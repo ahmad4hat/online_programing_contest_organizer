@@ -21,11 +21,11 @@ $questions = getAllQuestions();
             <p><?= $questions[$i]['difficulty'] ?></p>
 
             <hr>
-            <h4>Problem statement :</h2>
-                <p><?= $questions[$i]['problemStatement'] ?></p>
-                <h4>Expected output :</h2>
-                    <p><?= $questions[$i]['expectedOutput'] ?></p>
-                    <a href="question.php?id=<?= $questions[$i]['id'] ?>">More details</a>
+            <h4>Problem statement :</h4>
+            <p><?= $questions[$i]['problemStatement'] ?></p>
+            <h4>Expected output :</h4>
+            <p><?= $questions[$i]['expectedOutput'] ?></p>
+            <a href="question.php?id=<?= $questions[$i]['id'] ?>">More details</a>
 
         </div>
 
