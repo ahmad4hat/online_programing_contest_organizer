@@ -4,6 +4,23 @@ require_once('../db/db.php');
 require_once('database_helper.php');
 
 
+ 
+
+function deleteAnswersById($id)
+{
+    $conn = dbConnection();
+    if (!$conn) {
+        echo "DB connection error";
+    }
+
+    $sql = "DELETE FROM answers WHERE id='{$id}'";
+
+    if (mysqli_query($conn, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function getAnswersById($id)
 {

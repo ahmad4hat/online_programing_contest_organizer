@@ -43,3 +43,19 @@ function createMarkRating($rating)
         return false;
     }
 }
+
+function deleteRatings_markById($id)
+{
+    $conn = dbConnection();
+    if (!$conn) {
+        echo "DB connection error";
+    }
+
+    $sql = "DELETE FROM Ratings_mark WHERE id='{$id}'";
+
+    if (mysqli_query($conn, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}

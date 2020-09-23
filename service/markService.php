@@ -60,3 +60,19 @@ function createMark($mark)
         return false;
     }
 }
+
+function deleteMarksById($id)
+{
+    $conn = dbConnection();
+    if (!$conn) {
+        echo "DB connection error";
+    }
+
+    $sql = "DELETE FROM Marks WHERE id='{$id}'";
+
+    if (mysqli_query($conn, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}

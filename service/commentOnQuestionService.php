@@ -48,3 +48,19 @@ function CreateQuestionComments($q)
         return false;
     }
 }
+
+function deleteQuestion_commentsById($id)
+{
+    $conn = dbConnection();
+    if (!$conn) {
+        echo "DB connection error";
+    }
+
+    $sql = "DELETE FROM question_comments WHERE id='{$id}'";
+
+    if (mysqli_query($conn, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}

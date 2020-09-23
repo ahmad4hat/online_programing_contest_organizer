@@ -39,3 +39,18 @@ function create($question)
     }
 }
 
+function deleteQuestionById($id)
+{
+    $conn = dbConnection();
+    if (!$conn) {
+        echo "DB connection error";
+    }
+
+    $sql = "DELETE FROM Question WHERE id='{$id}'";
+
+    if (mysqli_query($conn, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}
