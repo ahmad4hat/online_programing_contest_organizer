@@ -22,8 +22,7 @@
         <textarea name="expectedOutput" id="expectedOutput" cols="50" rows="10"></textarea>
         <br>
         <br>
-        
-        
+
         <label for="supported_language">Supported Language (comma separated  value)  :</label>
         <p class="errorText hidden"  id="supported_languageErrorText">Hello </p>
         <br>
@@ -45,10 +44,7 @@
         <textarea name="instructions" id="instructions" cols="50" rows="10"></textarea>
         <br>
         <br>
-       
-        
-        
-        
+
         <label for="totalMark">Total Mark :</label>
         <p class="errorText hidden"  id="totalMarkErrorText">Hello </p>
         <input name="totalMark" type="number" id="totalMark"></input>
