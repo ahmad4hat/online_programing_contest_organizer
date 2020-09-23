@@ -371,7 +371,13 @@
         // console.log(sendObject);
          const sendJson= JSON.stringify(sendObject);
 
-        ajaxJson('../php/question_creation_handler.php',sendJson,(v)=>console.log(v));
+        ajaxJson('../php/question_creation_handler.php',sendJson,(v)=>{
+            v =JSON.parse(v);
+            console.log(v)
+            if(v.success){
+                window.location = "questions.php";
+            }
+         });
 
 
     })

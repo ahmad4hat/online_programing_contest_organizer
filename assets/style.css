@@ -41,16 +41,18 @@ nav li a {
 .hidden {
   display: none; }
 
-.questions {
-  display: flex;
-  justify-content: space-evenly; }
-  .questions__card {
-    display: flex;
-    flex-direction: column;
-    background-color: azure;
-    margin: 20px;
-    padding: 3rem; }
+.questions__card {
+  box-sizing: border-box;
+  background-color: azure;
+  margin-top: 1rem; }
+  @media screen and (min-width: 50em) {
+    .questions__card {
+      margin: 2rem;
+      padding: 3rem; } }
 
 .container {
-  width: 80%;
+  width: 100%;
   margin: 0 auto; }
+  @media screen and (min-width: 50em) {
+    .container {
+      width: 80%; } }

@@ -12,7 +12,7 @@ require_once('../service/questionService.php');
 $questions = getAllQuestions();
 ?>
 
-<div class="question container">
+<div class="questions container">
 
 
     <?php for ($i = 0; $i != count($questions); $i++) { ?>

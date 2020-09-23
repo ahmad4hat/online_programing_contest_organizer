@@ -32,7 +32,13 @@ $question = getQuestionById($_GET['id']);
     <p></p><?= $question['supported_language'] ?></p>
 
 
-    
+
+    <?php if ($user['user_type'] == 'participant') { ?>
+        <a href="answer_submission.php?id=<?= $question['id'] ?>">Answer this question</a>
+
+    <?php } ?>
+
+
 
 
 
